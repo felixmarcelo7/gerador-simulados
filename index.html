@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Simulados</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Gerador de Simulados</h1>
+        <p>Teste seus conhecimentos</p>
+      </header>
+
+      <form>
+        <label for="selDisciplina">Disciplina</label>
+        <select name="disciplina" id="selDisciplina" required>
+          <option value="" disabled selected>Selecione uma disciplina</option>
+          <option value="portugues">Português</option>
+          <option value="rlm">Raciocínio Lógico</option>
+          <option value="historia">História</option>
+          <option value="geografia">Geografia</option>
+        </select>
+
+        <label for="numQuestoes">Quantidade de Questões</label>
+        <input type="number" min="1" max="20" id="numQuestoes" name="numQuestoes" required />
+
+        <button type="submit" id="iniciarSimuladoBtn">Iniciar Simulado</button>
+      </form>
+    </main>
+  </body>
+</html>
