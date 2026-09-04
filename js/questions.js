@@ -1,4 +1,4 @@
-const questoesPortugues = [
+const questoes = [
   {
     id: 1,
     disciplina: "Português",
@@ -40,5 +40,3 @@ const questoesPortugues = [
     respostaCorreta: 1,
   },
 ];
-
-console.log(questoesPortugues);
