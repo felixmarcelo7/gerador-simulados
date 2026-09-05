@@ -4,19 +4,39 @@ const enunciado = document.getElementById("enunciadoQuestao");
 const contInicial = document.getElementById("spnCont");
 const contFinal = document.getElementById("spnTot");
 const alternativasContainer = document.getElementById("alternativasContainer");
+let indexQuestaoAtual = 0;
+let totQuestoes = 0;
+const proxBtn = document.getElementById("proxBtn");
 
 frm.addEventListener("submit", (e) => {
   e.preventDefault();
   const discSelecionada = frm.selDisciplina.value;
-  const qtnQuestoes = Number(frm.numQuestoes.value);
+  totQuestoes = Number(frm.numQuestoes.value);
   frm.classList.add("oculto");
   secSimulado.classList.remove("oculto");
 
-  enunciado.textContent = questoes[0].enunciado;
-  contInicial.textContent = 1;
-  contFinal.textContent = qtnQuestoes;
+  exibirQuestao();
+});
 
-  questoes[0].alternativas.forEach((alternativa, index) => {
+proxBtn.addEventListener("click", () => {
+  if (indexQuestaoAtual < totQuestoes - 1) {
+    indexQuestaoAtual++;
+    exibirQuestao();
+  } else {
+    console.log("Fim do simulado");
+    return;
+  }
+});
+
+const exibirQuestao = () => {
+  //gera o enunciado
+  alternativasContainer.innerHTML = "";
+  enunciado.textContent = questoes[indexQuestaoAtual].enunciado;
+  contInicial.textContent = indexQuestaoAtual + 1;
+  contFinal.textContent = totQuestoes;
+
+  //gera as alternativas
+  questoes[indexQuestaoAtual].alternativas.forEach((alternativa, index) => {
     const alt = document.createElement("li");
 
     alt.innerHTML = /*html*/ `
@@ -26,6 +46,4 @@ frm.addEventListener("submit", (e) => {
 
     alternativasContainer.appendChild(alt);
   });
-
-  console.log(`Disciplina: ${discSelecionada}, Quantidade: ${qtnQuestoes}`);
-});
+};
