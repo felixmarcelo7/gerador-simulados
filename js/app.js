@@ -8,13 +8,15 @@ const numAcertosFim = document.getElementById("numAcertosFim");
 const totQuestoesFim = document.getElementById("totQuestoesFim");
 const alternativasContainer = document.getElementById("alternativasContainer");
 const proxBtn = document.getElementById("proxBtn");
+const novoSimuladoBtn = document.getElementById("novoSimulado");
+const selDisciplina = document.getElementById("selDisciplina");
 let indexQuestaoAtual = 0;
 let totQuestoes = 0;
 let totAcertos = 0;
 
 frm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const discSelecionada = frm.selDisciplina.value;
+
   totQuestoes = Number(frm.numQuestoes.value);
   frm.classList.add("oculto");
   secSimulado.classList.remove("oculto");
@@ -49,6 +51,16 @@ proxBtn.addEventListener("click", () => {
     totQuestoesFim.textContent = totQuestoes;
     return;
   }
+});
+
+novoSimuladoBtn.addEventListener("click", () => {
+  secFimSimulado.classList.add("oculto");
+  frm.classList.remove("oculto");
+  frm.reset();
+  selDisciplina.focus();
+  indexQuestaoAtual = 0;
+  totQuestoes = 0;
+  totAcertos = 0;
 });
 
 const exibirQuestao = () => {
