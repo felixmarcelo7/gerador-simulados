@@ -1,8 +1,11 @@
 const frm = document.querySelector("form");
 const secSimulado = document.getElementById("simulado");
+const secFimSimulado = document.getElementById("fimSimulado");
 const enunciado = document.getElementById("enunciadoQuestao");
 const contInicial = document.getElementById("spnCont");
 const contFinal = document.getElementById("spnTot");
+const numAcertosFim = document.getElementById("numAcertosFim");
+const totQuestoesFim = document.getElementById("totQuestoesFim");
 const alternativasContainer = document.getElementById("alternativasContainer");
 const proxBtn = document.getElementById("proxBtn");
 let indexQuestaoAtual = 0;
@@ -39,8 +42,11 @@ proxBtn.addEventListener("click", () => {
     indexQuestaoAtual++;
     exibirQuestao();
   } else {
-    console.log(`Fim do simulado: ${totAcertos} de ${totQuestoes}`);
-    proxBtn.disabled = true;
+    secSimulado.classList.add("oculto");
+    secFimSimulado.classList.remove("oculto");
+
+    numAcertosFim.textContent = totAcertos;
+    totQuestoesFim.textContent = totQuestoes;
     return;
   }
 });
