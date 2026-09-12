@@ -49,7 +49,6 @@ frm.addEventListener("submit", (e) => {
   // Embaralha e pega as primeiras N questões
   shuffle(copiaQuestoes);
   questoesSelecionadas = copiaQuestoes.slice(0, totQuestoes);
-  console.log(questoesSelecionadas);
   exibirQuestao();
 });
 
