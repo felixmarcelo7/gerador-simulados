@@ -18,17 +18,19 @@
         <label for="selDisciplina">Disciplina</label>
         <select name="disciplina" id="selDisciplina" required>
           <option value="" disabled selected>Selecione uma disciplina</option>
-          <option value="portugues">Português</option>
-          <option value="rlm">Raciocínio Lógico</option>
-          <option value="historia">História</option>
-          <option value="geografia">Geografia</option>
+          <option value="Português">Português</option>
+          <option value="Matemática">Matemática</option>
+          <option value="Inglês">Inglês</option>
+          <option value="Raciocínio Lógico">Raciocínio Lógico</option>
+          <option value="História">História</option>
+          <option value="Geografia">Geografia</option>
         </select>
 
         <label for="numQuestoes">Quantidade de Questões</label>
         <input
           type="number"
           min="1"
-          max="5"
+          max="20"
           id="numQuestoes"
           name="numQuestoes"
           required
@@ -38,6 +40,7 @@
       </form>
 
       <section id="simulado" class="oculto">
+        <p id="outDisciplina"></p>
         <p>Questão <span id="spnCont"></span> de <span id="spnTot"></span></p>
         <!--Dentro do span será alterado conforme o número de questoes escolhidas-->
         <fieldset id="questao">

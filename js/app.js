@@ -11,6 +11,7 @@ const alternativasContainer = document.getElementById("alternativasContainer");
 const proxBtn = document.getElementById("proxBtn");
 const novoSimuladoBtn = document.getElementById("novoSimulado");
 const selDisciplina = document.getElementById("selDisciplina");
+const outDisciplina = document.getElementById("outDisciplina");
 // Estado do simulado: posição da questão (começa em 0), totais e questões sorteadas.
 let indexQuestaoAtual = 0;
 let totQuestoes = 0;
@@ -44,12 +45,24 @@ frm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   totQuestoes = Number(frm.numQuestoes.value);
-  frm.classList.add("oculto");
-  secSimulado.classList.remove("oculto");
-  // Embaralha e pega as primeiras N questões
-  shuffle(copiaQuestoes);
-  questoesSelecionadas = copiaQuestoes.slice(0, totQuestoes);
-  exibirQuestao();
+
+  //filtra as questões por matéria
+  const questoesDaDiciplinaSelecionada = copiaQuestoes.filter((questao) => {
+    return questao.disciplina === selDisciplina.value;
+  });
+  //validação de números de questões disponíveis
+  if (questoesDaDiciplinaSelecionada.length >= totQuestoes) {
+    frm.classList.add("oculto");
+    secSimulado.classList.remove("oculto");
+    // Embaralha e pega as primeiras N questões
+    shuffle(questoesDaDiciplinaSelecionada);
+    questoesSelecionadas = questoesDaDiciplinaSelecionada.slice(0, totQuestoes);
+    exibirQuestao();
+  } else {
+    alert(
+      "Infelizmente ainda não temos esse número de questões no nosso banco de dados, mas estamos trabalhando para melhorar isso!",
+    );
+  }
 });
 
 // Confere a resposta e avança para a próxima questão ou mostra o resultado.
@@ -107,6 +120,7 @@ const exibirQuestao = () => {
   // Remove as alternativas anteriores, incluindo a seleção da resposta anterior.
   alternativasContainer.innerHTML = "";
   enunciado.textContent = questoesSelecionadas[indexQuestaoAtual].enunciado;
+  outDisciplina.textContent = selDisciplina.value;
   // Soma 1 apenas para exibir uma contagem mais natural ao usuário: 1, 2, 3...
   contInicial.textContent = indexQuestaoAtual + 1;
   contFinal.textContent = totQuestoes;
